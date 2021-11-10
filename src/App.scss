@@ -1,3 +1,10 @@
-.starter {
-  font-size: 18px;
+.App {
+  &__Menu {
+    max-width: 768px;
+    margin: 0 auto;
+
+    @include onMobile {
+      margin: 0 30px;
+    }
+  }
 }
