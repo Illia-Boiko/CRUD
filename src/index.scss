@@ -1,6 +1,9 @@
 @import './utils/normalize';
-@import './utils/mixins';
+// @import './utils/mixins';
 @import 'bulma/css/bulma.css';
 
 @import './App.scss';
 @import './components/Menu/Menu.scss';
+@import './components/ListOfPosts/ListOfPosts.scss';
+@import './components/Post/Post.scss';
+@import './components/Sidebar/Sidebar.scss';

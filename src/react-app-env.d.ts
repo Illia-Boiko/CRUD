@@ -2,13 +2,15 @@
 
 interface Post {
   id: number;
+  userId: number;
   title: string;
-  text: string;
-  image: string;
-  url: string;
-  active: number;
-  sort_order: number;
-  created_at: string;
-  updated_at: string;
-  deleted_at: null;
+  body: string;
+  // text: string;
+  // image: string;
+  // url: string;
+  // active: number;
+  // sort_order: number;
+  createdAt: string;
+  updatedAt: string;
+  // deleted_at: null;
 }
