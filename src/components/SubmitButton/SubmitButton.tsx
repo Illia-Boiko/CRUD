@@ -9,7 +9,7 @@ export const SubmitButton: React.FC<Props> = (props) => {
 
   return (
     <button
-      type="submit"
+      type="button"
       onClick={onClick}
       className="button is-dark"
     >

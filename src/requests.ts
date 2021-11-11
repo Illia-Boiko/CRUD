@@ -27,7 +27,7 @@ export const createNewPostOnServer = (postUserId = 0, postTitle = '', postBody =
   );
 };
 
-export const deletePostByIdFromServer = (postId: number) => {
+export const deletePostByIdFromServer = (postId = 0) => {
   return (
     fetch(`${URL}/${postId}`, {
       method: 'DELETE',

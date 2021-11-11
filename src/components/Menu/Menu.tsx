@@ -17,9 +17,6 @@ export const Menu: React.FC<Props> = (props) => {
     onCreateVisible,
     onDeleteVisible,
     onUpdateVisible,
-    isCreateVisible,
-    isUpdateVisible,
-    isDeleteVisible,
   } = props;
 
   const [listOfPosts, setListOfPosts] = useState<Post[] | null>([]);
@@ -53,17 +50,14 @@ export const Menu: React.FC<Props> = (props) => {
         <Button
           name="New post"
           onClick={onCreateVisible}
-          disabled={isUpdateVisible || isDeleteVisible}
         />
         <Button
           name="Update post"
           onClick={onUpdateVisible}
-          disabled={isCreateVisible || isDeleteVisible}
         />
         <Button
           name="Delete post"
           onClick={onDeleteVisible}
-          disabled={isCreateVisible || isUpdateVisible}
         />
       </div>
       {isListVisible && (
