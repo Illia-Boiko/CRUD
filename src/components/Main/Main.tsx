@@ -44,6 +44,12 @@ export const Main: React.FC<Props> = (props) => {
 
   return (
     <main className="Main App__Main box">
+      <a
+        href="#bottom"
+        className="arrow-button button"
+      >
+        &#8595;
+      </a>
       <div className="Main__button-container">
         <Button
           name="Update list"
@@ -67,7 +73,16 @@ export const Main: React.FC<Props> = (props) => {
         />
       </div>
       {isListVisible && (
-        <ListOfPosts posts={listOfPosts} />
+        <>
+          <ListOfPosts posts={listOfPosts} />
+          <a
+            href="#top"
+            id="bottom"
+            className="button to-start-button is-light"
+          >
+            To start
+          </a>
+        </>
       )}
     </main>
   );

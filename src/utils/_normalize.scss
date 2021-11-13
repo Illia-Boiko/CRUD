@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
 }
@@ -15,4 +19,16 @@ body {
   height: 100vh;
   width: 100w;
   background-color: #00000055;
+}
+
+.arrow-button {
+  border-radius: 50%;
+  position: absolute;
+  right: 200px;
+  top: 100px;
+  background-color: #c484bc3d;
+}
+
+.to-start-button {
+  width: 100%;
 }
