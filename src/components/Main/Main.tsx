@@ -12,11 +12,14 @@ type Props = {
   isDeleteVisible: boolean;
 };
 
-export const Menu: React.FC<Props> = (props) => {
+export const Main: React.FC<Props> = (props) => {
   const {
     onCreateVisible,
     onDeleteVisible,
     onUpdateVisible,
+    isCreateVisible,
+    isUpdateVisible,
+    isDeleteVisible,
   } = props;
 
   const [listOfPosts, setListOfPosts] = useState<Post[] | null>([]);
@@ -34,11 +37,14 @@ export const Menu: React.FC<Props> = (props) => {
 
   useEffect(() => {
     getListOfPosts();
-  }, []);
+
+    // eslint-disable-next-line no-console
+    console.log('test');
+  }, [isCreateVisible, isUpdateVisible, isDeleteVisible]);
 
   return (
-    <main className="Menu App__Menu box">
-      <div className="Menu__button-container">
+    <main className="Main App__Main box">
+      <div className="Main__button-container">
         <Button
           name="Update list"
           onClick={getListOfPosts}

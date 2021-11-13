@@ -12,7 +12,7 @@ export const Button: React.FC<Props> = (props) => {
     <button
       type="button"
       onClick={onClick}
-      className="button is-light"
+      className="Button button is-light"
     >
       {name}
     </button>

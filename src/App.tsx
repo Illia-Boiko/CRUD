@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Menu } from './components/Menu';
-import { Sidebar } from './components/Sidebar';
+import { Main } from './components/Main';
+import { ModalWindow } from './components/ModalWindow';
 
 export const App: React.FC = () => {
   const [isCreatePostFormVisible, setIsCreatePostFormVisible] = useState(false);
@@ -19,15 +19,9 @@ export const App: React.FC = () => {
     setIsDeletePostFormVisible(true);
   };
 
-  const hideCreateForm = () => {
+  const hideForm = () => {
     setIsCreatePostFormVisible(false);
-  };
-
-  const hideUpdateForm = () => {
     setIsUpdatePostFormVisible(false);
-  };
-
-  const hideDeleteForm = () => {
     setIsDeletePostFormVisible(false);
   };
 
@@ -36,7 +30,7 @@ export const App: React.FC = () => {
       <h1 className="App__title">
         CRUD
       </h1>
-      <Menu
+      <Main
         onCreateVisible={showCreateForm}
         onUpdateVisible={showUpdateForm}
         onDeleteVisible={showDeleteForm}
@@ -49,13 +43,11 @@ export const App: React.FC = () => {
         || isUpdatePostFormVisible
         || isDeletePostFormVisible)
         && (
-          <Sidebar
+          <ModalWindow
             isCreateVisible={isCreatePostFormVisible}
             isUpdateVisible={isUpdatePostFormVisible}
             isDeleteVisible={isDeletePostFormVisible}
-            onCreateHidden={hideCreateForm}
-            onUpdateHidden={hideUpdateForm}
-            onDeleteHidden={hideDeleteForm}
+            onHideForm={hideForm}
           />
         )
       }

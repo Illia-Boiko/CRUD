@@ -11,9 +11,7 @@ type Props = {
   isCreateVisible: boolean;
   isUpdateVisible: boolean;
   isDeleteVisible: boolean;
-  onCreateHidden: () => void;
-  onUpdateHidden: () => void;
-  onDeleteHidden: () => void;
+  onHideForm: () => void;
 };
 
 type Event = React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>;
@@ -23,95 +21,93 @@ export const Form: React.FC<Props> = (props) => {
     isCreateVisible,
     isUpdateVisible,
     isDeleteVisible,
-    onCreateHidden,
-    onUpdateHidden,
-    onDeleteHidden,
+    onHideForm,
   } = props;
 
-  const [creatingData, setCreatingData] = useState<Partial<Post>>({
+  const [postData, setPostData] = useState<Partial<Post>>({
+    id: 0,
     userId: 0,
     title: '',
     body: '',
   });
-  const [updatingData, setUpdatingData] = useState<Partial<Post>>({
-    id: 0,
-    title: '',
-    body: '',
-  });
-  const [deleteData, setDeleteData] = useState(0);
 
-  const createPost = () => {
-    const { userId, title, body } = creatingData;
-
-    createNewPostOnServer(userId, title, body);
-    onCreateHidden();
+  const clearState = () => {
+    setPostData({
+      id: 0,
+      userId: 0,
+      title: '',
+      body: '',
+    });
   };
 
-  const handleCreateChange = (event: Event) => {
+  const onCancelButton = () => {
+    clearState();
+    onHideForm();
+  };
+
+  const handleChange = (event: Event) => {
     const { name, value } = event.target;
 
-    setCreatingData({
-      ...creatingData,
+    setPostData({
+      ...postData,
       [name]: value,
     });
+  };
+
+  const createPost = () => {
+    const { userId, title, body } = postData;
+
+    createNewPostOnServer(userId, title, body);
+    clearState();
+    onHideForm();
   };
 
   const updatePost = () => {
-    const { id, title, body } = updatingData;
+    const { id, title, body } = postData;
 
     updatePostByIdOnServer(id, title, body);
-    onUpdateHidden();
-  };
-
-  const handleUpdateChange = (event: Event) => {
-    const { name, value } = event.target;
-
-    setUpdatingData({
-      ...updatingData,
-      [name]: value,
-    });
+    clearState();
+    onHideForm();
   };
 
   const deletePost = () => {
-    deletePostByIdFromServer(deleteData);
-    onDeleteHidden();
-  };
-
-  const handleDeleteChange = (event: Event) => {
-    setDeleteData(Number(event.target.value));
+    deletePostByIdFromServer(postData.id);
+    clearState();
+    onHideForm();
   };
 
   return (
     <form className="Form field">
       {isCreateVisible && (
         <>
+          <h2>Create new post</h2>
           <input
             type="number"
             name="userId"
             placeholder="Enter user id"
             className="Form__input input"
-            value={creatingData.userId}
-            onChange={handleCreateChange}
+            value={postData.userId}
+            onChange={handleChange}
           />
           <input
             type="text"
             name="title"
             placeholder="Enter the title"
             className="Form__input input"
-            value={creatingData.title}
-            onChange={handleCreateChange}
+            value={postData.title}
+            onChange={handleChange}
           />
           <textarea
             name="body"
             placeholder="Enter the body"
             className="Form__input input"
-            value={creatingData.body}
-            onChange={handleCreateChange}
+            value={postData.body}
+            onChange={handleChange}
           />
           <div className="Form__buttons-container">
             <Button
               name="Cancel"
-              onClick={onCreateHidden}
+              onClick={onCancelButton}
             />
             <SubmitButton onClick={createPost} />
           </div>
@@ -119,33 +115,34 @@ export const Form: React.FC<Props> = (props) => {
       )}
       {isUpdateVisible && (
         <>
+          <h2>Update post</h2>
           <input
             type="number"
             name="id"
             placeholder="Enter post id"
             className="Form__input input"
-            value={updatingData.id}
-            onChange={handleUpdateChange}
+            value={postData.id}
+            onChange={handleChange}
           />
           <input
             type="text"
             name="title"
             placeholder="Enter the title"
             className="Form__input input"
-            value={updatingData.title}
-            onChange={handleUpdateChange}
+            value={postData.title}
+            onChange={handleChange}
           />
           <textarea
             name="body"
             placeholder="Enter the body"
             className="Form__input input"
-            value={updatingData.body}
-            onChange={handleUpdateChange}
+            value={postData.body}
+            onChange={handleChange}
           />
           <div className="Form__buttons-container">
             <Button
               name="Cancel"
-              onClick={onUpdateHidden}
+              onClick={onCancelButton}
             />
             <SubmitButton onClick={updatePost} />
           </div>
@@ -153,18 +150,19 @@ export const Form: React.FC<Props> = (props) => {
       )}
       {isDeleteVisible && (
         <>
+          <h2>Delete post</h2>
           <input
             type="number"
             name="id"
-            placeholder="Enter id"
+            placeholder="Enter post id"
             className="Form__input input"
-            value={deleteData}
-            onChange={handleDeleteChange}
+            value={postData.id}
+            onChange={handleChange}
           />
           <div className="Form__buttons-container">
             <Button
               name="Cancel"
-              onClick={onDeleteHidden}
+              onClick={onCancelButton}
             />
             <SubmitButton onClick={deletePost} />
           </div>

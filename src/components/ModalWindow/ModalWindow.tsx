@@ -5,31 +5,25 @@ type Props = {
   isCreateVisible: boolean;
   isUpdateVisible: boolean;
   isDeleteVisible: boolean;
-  onCreateHidden: () => void;
-  onUpdateHidden: () => void;
-  onDeleteHidden: () => void;
+  onHideForm: () => void;
 };
 
-export const Sidebar: React.FC<Props> = (props) => {
+export const ModalWindow: React.FC<Props> = (props) => {
   const {
     isCreateVisible,
     isUpdateVisible,
     isDeleteVisible,
-    onCreateHidden,
-    onUpdateHidden,
-    onDeleteHidden,
+    onHideForm,
   } = props;
 
   return (
     <div className="eclipse">
-      <section className="Sidebar box">
+      <section className="ModalWindow box">
         <Form
           isCreateVisible={isCreateVisible}
           isUpdateVisible={isUpdateVisible}
           isDeleteVisible={isDeleteVisible}
-          onCreateHidden={onCreateHidden}
-          onUpdateHidden={onUpdateHidden}
-          onDeleteHidden={onDeleteHidden}
+          onHideForm={onHideForm}
         />
       </section>
     </div>

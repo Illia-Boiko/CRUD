@@ -11,7 +11,7 @@ export const SubmitButton: React.FC<Props> = (props) => {
     <button
       type="button"
       onClick={onClick}
-      className="button is-dark"
+      className="Button button is-dark"
     >
       Ok
     </button>
