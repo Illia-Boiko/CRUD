@@ -54,6 +54,7 @@ export const Main: React.FC<Props> = (props) => {
         <Button
           name="Update list"
           onClick={getListOfPosts}
+          className="is-info"
         />
         <Button
           name={isListVisible ? 'Hide list of posts' : 'Show list of posts'}
