@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  overflow: scroll;
 }
 
 html {
@@ -24,8 +25,8 @@ body {
 .arrow-button {
   border-radius: 50%;
   position: absolute;
-  right: 200px;
-  top: 100px;
+  right: 15%;
+  top: 3%;
   background-color: #c484bc3d;
 }
 

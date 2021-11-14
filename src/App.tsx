@@ -31,6 +31,12 @@ export const App: React.FC = () => {
       <h1 className="App__title">
         CRUD
       </h1>
+      <a
+        href="#bottom"
+        className="arrow-button button"
+      >
+        &#8595;
+      </a>
       <Main
         onCreateVisible={showCreateForm}
         onUpdateVisible={showUpdateForm}

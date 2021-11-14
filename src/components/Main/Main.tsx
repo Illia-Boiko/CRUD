@@ -44,12 +44,6 @@ export const Main: React.FC<Props> = (props) => {
 
   return (
     <main className="Main App__Main box">
-      <a
-        href="#bottom"
-        className="arrow-button button"
-      >
-        &#8595;
-      </a>
       <div className="Main__button-container">
         <Button
           name="Update list"
