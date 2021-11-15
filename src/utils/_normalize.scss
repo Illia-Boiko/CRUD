@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+.eclipse {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  width: 100w;
+  background-color: #00000055;
+}
+
+.arrow-button {
+  border-radius: 50%;
+  position: absolute;
+  right: 15%;
+  top: 3%;
+  background-color: #c484bc3d;
+}
+
+.to-start-button {
+  width: 100%;
+}

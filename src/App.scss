@@ -1,3 +1,11 @@
-.starter {
-  font-size: 18px;
+.App {
+  &__title {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  &__Main {
+    width: 1024px;
+    margin: 0 auto;
+  }
 }

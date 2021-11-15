@@ -1,0 +1,10 @@
+.Form {
+  &__input {
+    margin-bottom: 10px;
+  }
+
+  &__buttons-container {
+    display: flex;
+    justify-content: space-between;
+  }
+}

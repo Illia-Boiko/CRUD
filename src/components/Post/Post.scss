@@ -1,0 +1,19 @@
+.Post {
+  border-bottom: 1px solid #6d6d6d;
+  list-style: none;
+  padding: 0;
+
+  &__id {
+    color: #0c64bd;
+  }
+
+  &__title {
+    text-transform: capitalize;
+    margin-top: 10px !important;
+  }
+  
+  &__body {
+    text-transform: uppercase;
+    color: #6d6d6d;
+  }
+}
