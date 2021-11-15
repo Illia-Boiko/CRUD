@@ -7,6 +7,12 @@ export const App: React.FC = () => {
   const [isUpdatePostFormVisible, setIsUpdatePostFormVisible] = useState(false);
   const [isDeletePostFormVisible, setIsDeletePostFormVisible] = useState(false);
 
+  const isFormVisible = (
+    isCreatePostFormVisible
+    || isUpdatePostFormVisible
+    || isDeletePostFormVisible
+  );
+
   const showCreateForm = () => {
     setIsCreatePostFormVisible(true);
   };
@@ -41,14 +47,10 @@ export const App: React.FC = () => {
         onCreateVisible={showCreateForm}
         onUpdateVisible={showUpdateForm}
         onDeleteVisible={showDeleteForm}
-        isCreateVisible={isCreatePostFormVisible}
-        isUpdateVisible={isUpdatePostFormVisible}
-        isDeleteVisible={isDeletePostFormVisible}
+        isFormVisible={isFormVisible}
       />
       {
-        (isCreatePostFormVisible
-        || isUpdatePostFormVisible
-        || isDeletePostFormVisible)
+        isFormVisible
         && (
           <ModalWindow
             isCreateVisible={isCreatePostFormVisible}

@@ -7,9 +7,7 @@ type Props = {
   onCreateVisible: () => void;
   onUpdateVisible: () => void;
   onDeleteVisible: () => void;
-  isCreateVisible: boolean;
-  isUpdateVisible: boolean;
-  isDeleteVisible: boolean;
+  isFormVisible: boolean;
 };
 
 export const Main: React.FC<Props> = (props) => {
@@ -17,13 +15,12 @@ export const Main: React.FC<Props> = (props) => {
     onCreateVisible,
     onDeleteVisible,
     onUpdateVisible,
-    isCreateVisible,
-    isUpdateVisible,
-    isDeleteVisible,
+    isFormVisible,
   } = props;
 
   const [listOfPosts, setListOfPosts] = useState<Post[] | null>([]);
   const [isListVisible, setIsListVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const changeVisibilityOfList = () => {
     setIsListVisible(!isListVisible);
@@ -32,27 +29,32 @@ export const Main: React.FC<Props> = (props) => {
   const getListOfPosts = (async () => {
     const posts = await getListOfPostsFromServer();
 
-    setListOfPosts(posts);
+    if (posts) {
+      const postsList = posts.reverse();
+
+      setListOfPosts(postsList);
+    }
   });
 
   useEffect(() => {
     getListOfPosts();
 
-    // eslint-disable-next-line no-console
-    console.log('test');
-  }, [isCreateVisible, isUpdateVisible, isDeleteVisible]);
+    const updateList = async () => {
+      setIsLoading(true);
+      await getListOfPosts();
+      setIsLoading(false);
+    };
+
+    updateList();
+  }, [isFormVisible]);
 
   return (
     <main className="Main App__Main box">
       <div className="Main__button-container">
         <Button
-          name="Update list"
-          onClick={getListOfPosts}
-          className="is-info"
-        />
-        <Button
           name={isListVisible ? 'Hide list of posts' : 'Show list of posts'}
           onClick={changeVisibilityOfList}
+          className={isLoading ? 'is-loading' : 'is-link'}
         />
         <Button
           name="New post"
